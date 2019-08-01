@@ -26,7 +26,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     FLASK_APP = 'APP-DEV'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI_DEV')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
     PORT = os.getenv('PORT') or 2000
 
 class TestingConfig(Config):
@@ -36,7 +36,7 @@ class TestingConfig(Config):
        """
     TESTING = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = os.getenv('TEST_SQLALCHEMY_DATABASE_URI_DEV')
+    SQLALCHEMY_DATABASE_URI = os.getenv('TEST_DATABASE_URL')
 
 
 class StagingConfig(Config):
