@@ -1,3 +1,0 @@
-"""
-Main Application Package
-"""

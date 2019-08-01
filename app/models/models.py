@@ -47,7 +47,3 @@ class Options(db.Model):
     d = db.Column(db.String)
     quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'), nullable=False)
     qa_id = db.Column(db.Integer, db.ForeignKey('qa.id'), nullable=False)
-
-
-
-
