@@ -18,8 +18,8 @@ class QuizCreation(unittest.TestCase):
         self.client = self.app.test_client()
 
     def test_quiz_create(self):
-        sample_csv = open("sample.csv", "rb").read()
-        data = {"data": (io.BytesIO(sample_csv), "sample.csv")}
+        sample_csv = open("tests/sample.csv", "rb").read()
+        data = {"data": (io.BytesIO(sample_csv), "tests/sample.csv")}
         response = self.client.post('/quiz/create', content_type='multipart/form-data', data=data)
         with self.app.app_context():
             quiz = models.QA.query.filter_by(answer='England').first()
@@ -28,8 +28,8 @@ class QuizCreation(unittest.TestCase):
         self.assertEqual(quiz.question, 'Chelsea is in what country?')
 
     def test_quiz_create_bad_file(self):
-        bad_sample_csv = open("bad_sample.csv", "rb").read()
-        data = {"data": (io.BytesIO(bad_sample_csv), "bad_sample.csv")}
+        bad_sample_csv = open("tests/bad_sample.csv", "rb").read()
+        data = {"data": (io.BytesIO(bad_sample_csv), "tests/bad_sample.csv")}
         response = self.client.post('/quiz/create', content_type='multipart/form-data', data=data)
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json['message'], "'Option C' column missing")
@@ -51,8 +51,8 @@ class QuizView(unittest.TestCase):
         self.create_quiz()
 
     def create_quiz(self):
-        sample_csv = open("sample.csv", "rb").read()
-        data = {"data": (io.BytesIO(sample_csv), "sample.csv")}
+        sample_csv = open("tests/sample.csv", "rb").read()
+        data = {"data": (io.BytesIO(sample_csv), "tests/sample.csv")}
         self.client.post('/quiz/create', content_type='multipart/form-data', data=data)
 
     def test_view_unavailable_quiz(self):
@@ -94,8 +94,8 @@ class QuizSolve(unittest.TestCase):
         self.client.post(path='/user/register', data=json.dumps(data), content_type='application/json')
 
     def create_quiz(self):
-        sample_csv = open("sample.csv", "rb").read()
-        data = {"data": (io.BytesIO(sample_csv), "sample.csv")}
+        sample_csv = open("tests/sample.csv", "rb").read()
+        data = {"data": (io.BytesIO(sample_csv), "tests/sample.csv")}
         self.client.post('/quiz/create', content_type='multipart/form-data', data=data)
 
     def test_solve_unavailable_quiz(self):
