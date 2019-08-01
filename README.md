@@ -25,7 +25,7 @@ curl -v http://quizor.herokuapp.com/quiz/1/view
 
 curl -u haks:12345 -d '{"answers": ["England", "England", "Spain", "Italy", "Nigeria", "Scotland", "Germany", "Spain", "Netherlands", "France", "Portugal", "Ghana", "Swaziland"]}' -H 'Content-Type: application/json' http://quizor.herokuapp.com/quiz/3/solve
 
-**NB**: To solve quiz, username and password should be encoded in base64 and sent in as a header:  
+**NB**: To use through code, username and password should be encoded in base64 and sent in as a header:  
 
 credentials = base64.b64encode(b'haks:12345').decode('utf-8')  
 headers = {'Authorization': 'Basic ' + credentials}
