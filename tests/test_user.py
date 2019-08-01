@@ -25,7 +25,7 @@ class UserRegistration(unittest.TestCase):
                                     data=json.dumps(data),
                                     content_type='application/json')
         with self.app.app_context():
-            user = models.User.query.filter_by(username='Santa').first()
+            user = models.User.query.filter_by(username='Santa'.lower()).first()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json['message'],
                          "Account created successfully")

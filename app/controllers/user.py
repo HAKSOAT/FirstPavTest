@@ -26,7 +26,7 @@ def register():
 
 @auth.verify_password
 def verify_password(username, password):
-    user = models.User.query.filter_by(username=username).first()
+    user = models.User.query.filter_by(username=username.lower()).first()
     if user:
         if bcrypt.check_password_hash(user.password_hash, password):
             g.user = user
